@@ -16,9 +16,21 @@
                 <!--aggiungere foto tanto me lo scorderà-->
                 <img src="" alt="">
                 <div>
-                    
+                    <input type="text" class="form-control w-50 d-inline-block mx-3" v-model="todoText">
+                    <button class="btn btn-info" @click="addTask">Add Note</button>
                 </div>
             </header>
+            <main>
+                <ul class="list-group" v-if="tasks.length > 0">
+                    <li class="list-group-item list-group-item-action d-flex justify-content-between" v-for="(todo, index) in tasks" :key="todo.id">
+                        <span :class="{'done': todo.done}">{{todo.text}}</span>
+                        <i class="fa-solid fa-trash" @click="removeTask(index)"></i>
+                    </li>
+                </ul>
+                <div v-else>
+                    <h1>Non ci sono task</h1>
+                </div>
+            </main>
         </div>
     </div>
 
